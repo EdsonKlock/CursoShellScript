@@ -20,7 +20,7 @@ echo "======= Script de Busca de Alunos ========"
 echo 
 
 if [ $# -ge 0 ]
-then
+the
    ALUNOCOMPLETO=$(grep $1 $ARQALUNOS)
    echo "O nome completo do aluno é: $ALUNOCOMPLETO"
 else

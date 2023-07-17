@@ -21,6 +21,10 @@ DATAHORA=$(date +%H:%M)
 ARQALUNOS="/home/ricardo/Cursos/ShellScript/arquivos/alunos2.txt"
 
 # Funcao de leitura da data e hora
+
+echo "Iniciando o Script..." | logger -p local0.warn -t [$0] 
+$logger -p local0.warn -t [$0] "Iniciando o Script"
+
 clear
 echo "===== Meu Primeiro Script ======="
 echo 
@@ -29,8 +33,17 @@ echo "Exibir data e hora atual: $DATAHORA"
 # Area de leitura da lista de alunos
 echo "================================="
 echo "Listagem dos Alunos: "
-sort $ARQALUNOS
+sort $ARQALUNOS | tee -a >(logger -p local0.warn -t [$0]) 
 
 DATAHORA=$(date +%H)
 echo "================================="
 echo "Nova Hora Atual: $DATAHORA"
+
+#echo "$(date) - Fim do Script..." >> $LOG
+logger -p local0.warn -t [$0] "Fim do Script"
+
+
+echo "Script Executado com Sucesso" |mail -s "Relatorio de Execucao do $0" ricardo
+
+
+
